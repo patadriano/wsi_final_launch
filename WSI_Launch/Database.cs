@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Configuration;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Windows.Forms;
+
+namespace WSI_Launch
+{
+    public class Database
+    {
+        string connectionString = ConfigurationManager.ConnectionStrings["AppLaunch"].ConnectionString;
+
+        public void InsertItems(Item item)
+        {
+            List<Item> items = new List<Item>();
+
+            string query = "INSERT INTO Websites (Name, Url, Image) VALUES (@Name, @Url, @Image)";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", item.name);
+                    command.Parameters.AddWithValue("@Url", item.url);
+                    command.Parameters.AddWithValue("@Image", item.img);
+
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Record inserted successfully!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insert failed.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+
+            //return items;
+        }
+        public List<Item> GetItems()
+        {
+            List<Item> items = new List<Item>();
+            string query = "SELECT * FROM Websites";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Item item = new Item
+                                {
+                                    name = reader["Name"].ToString(),
+                                    url = reader["Url"].ToString(),
+                                    img = reader["Image"].ToString()  
+                                };
+                                items.Add(item);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+            return items;
+        }
+
+    }
+}

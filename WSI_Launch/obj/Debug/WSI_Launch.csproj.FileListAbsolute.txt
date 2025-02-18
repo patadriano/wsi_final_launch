@@ -1,0 +1,10 @@
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\bin\Debug\WSI_Launch.exe.config
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\bin\Debug\WSI_Launch.exe
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\bin\Debug\WSI_Launch.pdb
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.csproj.AssemblyReference.cache
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.Properties.Resources.resources
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.csproj.GenerateResource.cache
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.csproj.CoreCompileInputs.cache
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.exe
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.pdb
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.Form2.resources
