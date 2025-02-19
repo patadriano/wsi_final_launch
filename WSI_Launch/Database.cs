@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing;
 
 namespace WSI_Launch
 {
@@ -16,8 +18,6 @@ namespace WSI_Launch
 
         public void InsertItems(Item item)
         {
-            List<Item> items = new List<Item>();
-
             string query = "INSERT INTO Websites (Name, Url, Image) VALUES (@Name, @Url, @Image)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -46,42 +46,46 @@ namespace WSI_Launch
                     }
                 }
             }
-
-            //return items;
         }
         public List<Item> GetItems()
         {
-            List<Item> items = new List<Item>();
-            string query = "SELECT * FROM Websites";
+           List<Item> items = new List<Item>();
+            string query = "SELECT * FROM Websites"; 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                try
                 {
-                    try
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            while (reader.Read()) 
                             {
-                                Item item = new Item
+                                byte[] imageBytes = reader["Image"] as byte[];
+
+                                if (imageBytes != null)
                                 {
-                                    name = reader["Name"].ToString(),
-                                    url = reader["Url"].ToString(),
-                                    img = reader["Image"].ToString()  
-                                };
-                                items.Add(item);
+                                    Item item = new Item
+                                    {
+                                        name = reader["Name"].ToString(),  
+                                        url = reader["Url"].ToString(),   
+                                        img = imageBytes  
+                                    };
+                                    items.Add(item);
+                                }
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+                return items;
             }
-            return items;
         }
 
     }

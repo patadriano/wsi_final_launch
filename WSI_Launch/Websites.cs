@@ -10,7 +10,7 @@ namespace WSI_Launch
     {
         public string name { get; set; }
         public string url { get; set; }
-        public string img { get; set; }
+        public byte[] img { get; set; }
     }
 
     public class RootObject

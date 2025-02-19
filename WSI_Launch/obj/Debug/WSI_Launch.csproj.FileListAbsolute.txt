@@ -8,3 +8,4 @@ C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.csproj.CoreC
 C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.exe
 C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.pdb
 C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.Form2.resources
+C:\Users\PatAA\Downloads\WSI_Launch\WSI_Launch\obj\Debug\WSI_Launch.Form1.resources
