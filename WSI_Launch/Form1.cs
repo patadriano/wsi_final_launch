@@ -45,15 +45,25 @@ namespace WSI_Launch
                 byte[] imageBytes = item.img;
                 MemoryStream ms = new MemoryStream(imageBytes);
                 Image itemImage = Image.FromStream(ms);
-                PictureBox pictureBox = new PictureBox
+
+
+
+                CircularPictureBox pictureBox = new CircularPictureBox
                 {
+                    Size = new Size(200, 200),
+                    Location = new Point(100, 100),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    BorderStyle = BorderStyle.None,
                     Width = 100,
                     Height = 100,
                     Image = itemImage, 
-                    SizeMode = PictureBoxSizeMode.StretchImage, 
-                    BackColor = Color.Transparent,  
-                    
+                    //SizeMode = PictureBoxSizeMode.StretchImage, 
+                    BackColor = Color.Transparent,
                 };
+
+
+
+                
 
                 
                 pictureBox.Click += (sender, e) =>
@@ -82,6 +92,11 @@ namespace WSI_Launch
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

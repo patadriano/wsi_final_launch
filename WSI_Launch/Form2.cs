@@ -56,6 +56,8 @@ namespace WSI_Launch
                 byte[] imageBytes = item.img;
                 MemoryStream ms = new MemoryStream(imageBytes);
                 Image itemImage = Image.FromStream(ms);
+                
+
                 PictureBox pictureBox = new PictureBox
                 {
                     Width = 100,
@@ -66,8 +68,6 @@ namespace WSI_Launch
                     Tag = item.id
 
                 };
-
-
                 pictureBox.Click += (sender, e) =>
                 {
 
