@@ -36,42 +36,37 @@ namespace WSI_Launch
                     {
                         Width = panel.Width,
                         Height = panel.Height,
-                        FlowDirection = FlowDirection.TopDown,
                         Padding = new Padding(0),
-                        AutoSize = true
-                    };
+                        AutoScroll = true,
+                        FlowDirection = FlowDirection.LeftToRight,
+                        //WrapContents = false
 
+                    };
                 byte[] imageBytes = item.img;
                 MemoryStream ms = new MemoryStream(imageBytes);
                 Image itemImage = Image.FromStream(ms);
-                ImageList imageList = new ImageList();
-                imageList.ImageSize = new Size(100, 100);  // Set a standard size for your images (adjust as necessary)
-                imageList.Images.Add(itemImage);
+                PictureBox pictureBox = new PictureBox
+                {
+                    Width = 100,
+                    Height = 100,
+                    Image = itemImage, 
+                    SizeMode = PictureBoxSizeMode.StretchImage, 
+                    BackColor = Color.Transparent,  
+                    
+                };
 
-                Button button = new Button
+                
+                pictureBox.Click += (sender, e) =>
+                {
+                  
+                    Process.Start(new ProcessStartInfo
                     {
+                        FileName = item.url,
+                        UseShellExecute = true
+                    });
+                };
 
-
-                        Width = 100,
-                        Height = 100,
-                        Text = "",
-                    ImageList = imageList,  // Assign the ImageList to the button
-                    ImageIndex = 0,
-                    ImageAlign = ContentAlignment.MiddleCenter,
-                        BackgroundImageLayout = ImageLayout.Stretch,
-                        FlatStyle = FlatStyle.Flat,
-                        BackColor = Color.Transparent,
-                        FlatAppearance = { BorderSize = 0 }
-                    };
-                    button.Click += (sender, e) =>
-                    {
-                        Process.Start(new ProcessStartInfo
-                        {
-                            FileName = item.url,
-                            UseShellExecute = true
-                        });
-                    };
-                    Label label = new Label
+                Label label = new Label
                     {
                         Width = 100,
                         Height = 20,
@@ -79,11 +74,16 @@ namespace WSI_Launch
                         TextAlign = ContentAlignment.MiddleCenter,
                         Padding = new Padding(0)
                     };
-                    innerPanel.Controls.Add(button);
+                    innerPanel.Controls.Add(pictureBox);
                     innerPanel.Controls.Add(label);
                     panel.Controls.Add(innerPanel);
                     flowLayoutPanel1.Controls.Add(panel);
                 }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
